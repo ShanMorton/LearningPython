@@ -9,6 +9,10 @@ import requests
 # use the Lat/Long for PDX  [45.5234, -122.6762]
 try:
     responce = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat=5.5234&lon=-122.6762&appid=d29ed9d06fffc17f2715092156ee12eb")
-    print (responce)
+    # fif this cmd runs it'll print good data below
 except:
     print("This is not working for you at this time!\n")
+    #Other wise I get this print for an error.
+
+responce_json = responce.json()
+# this will put the result in a variable and put it json format, so that it's easy to read.
