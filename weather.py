@@ -19,8 +19,25 @@ responce_json = responce.json()
 
 # To get data from the dictonary
 temperature = responce_json["main"]["temp"]
-print(temperature)
+#print(temperature)
 temp_min = responce_json["main"]["temp_min"]
-print(temp_min)
+#print(temp_min)
 temp_max = responce_json["main"]["temp_max"]
-print(temp_max)
+#print(temp_max)
+print(f"\n\nIn Portland OR, the temp is {temperature} \u00B0F. The MinTemp is {temp_min}\u00B0F, and the MaxTemp is {temp_max}\u00B0F.\n\n")
+
+class City():
+
+    #The initialize method
+    # Ask for info when creating a new city instance
+    # Ask for the city's name, latitude, longitude and the unit designation which we have set as default "imperial"
+    def __init__(self, name, lat, long, units = "imperial"):
+        self.name = name
+        self.lat = lat
+        self.long = long
+        self.units = units
+
+#call/create a city object
+# I didn't supply a unit value b/c is has a default at this time, it can be supplied as needed in the call.
+myCity = City("Portland", 5.5234,-122.6762)
+# put the object I call into the variable "myCity"
