@@ -5,10 +5,8 @@ import requests
 # d29ed9d06fffc17f2715092156ee12eb  Remember that this would be kept secret in the real world.
 # find a way to hide this
 
-# this is the api call https://api.openweathermap.org/data/2.5/weather?lat=5.5234&lon=-122.6762&appid=d29ed9d06fffc17f2715092156ee12eb
-# use the Lat/Long for PDX  [45.5234, -122.6762]
-
-
+#this is the api call https://api.openweathermap.org/data/2.5/weather?lat=5.5234&lon=-122.6762&appid=d29ed9d06fffc17f2715092156ee12eb
+#use the Lat/Long for PDX  [45.5234, -122.6762]
 
 class City():
 
@@ -16,13 +14,15 @@ class City():
     # Ask for info when creating a new city instance
     # Ask for the city's name, latitude, longitude and the unit designation which we have set as default "imperial"
     def __init__(self, name, lat, long, units = "imperial"):
+        # set the incoming values from self to the variables in the method
         self.name = name
         self.lat = lat
         self.long = long
         self.units = units
-        #Call the GetData for the city we want to create
+        #Call the GetData method for the city we want to create
         self.getData()
 
+    #query the city from the data in put to the method call.
     def getData(self):
         try:
             responce = requests.get(f"https://api.openweathermap.org/data/2.5/weather?units={self.units}&lat={self.lat}&lon={self.long}&appid=d29ed9d06fffc17f2715092156ee12eb")
@@ -30,21 +30,23 @@ class City():
         except:
             print("This is not working for you at this time!\n")
             #Other wise I get this print for an error.
-
-        responce_json = responce.json()
+        
         # this will put the result in a variable and put it json format, so that it's easy to read.
+        responce_json = responce.json()
+        
 
         # To get data from the dictonary
+        #set the method variables to what comes back from the query. 
         self.temp = responce_json["main"]["temp"]
-        print(self.temp)
+        #print(self.temp)
         self.temp_min = responce_json["main"]["temp_min"]
-        print(self.temp_min)
+        #print(self.temp_min)
         self.temp_max = responce_json["main"]["temp_max"]
-        print(self.temp_max)
+        #print(self.temp_max)
         
-        
+        #print the information from the query. 
     def temp_print(self):
-        print(f"\n\nIn Portland OR, the temp is {self.temp} \u00B0F. The MinTemp is {self.temp_min}\u00B0F, and the MaxTemp is {self.temp_max}\u00B0F.\n\n")
+        print(f"\n\nIn {self.name}, the temp is {self.temp} \u00B0F. The MinTemp is {self.temp_min}\u00B0F, and the MaxTemp is {self.temp_max}\u00B0F.\n\n")
 
 
 
@@ -54,3 +56,5 @@ class City():
 myCity = City("Portland", 5.5234,-122.6762)
 myCity.temp_print()
 
+nextCity = City("Dallas", 32.7831, -96.8067)
+nextCity.temp_print()
