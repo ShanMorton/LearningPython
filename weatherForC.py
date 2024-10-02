@@ -8,6 +8,9 @@ import requests
 #this is the api call https://api.openweathermap.org/data/2.5/weather?lat=5.5234&lon=-122.6762&appid=d29ed9d06fffc17f2715092156ee12eb
 #use the Lat/Long for PDX  [45.5234, -122.6762]
 
+###Challenge 
+#Change the print out of the units to be F or C as needed
+
 class City():
 
     #The initialize method
@@ -19,6 +22,13 @@ class City():
         self.lat = lat
         self.long = long
         self.units = units
+        ## this is how I solved the challenge. it seems to work
+        ## I asked if the units were imperial or metric and set a method variable to
+        ## use in the print statment.
+        if self.units == "imperial":
+            self.temp_degree = "F"
+        else:
+            self.temp_degree = "C"
         #Call the GetData method for the city we want to create
         self.getData()
 
@@ -49,16 +59,16 @@ class City():
         
         #print the information from the query. 
     def temp_print(self):
-        print(f"\n\nIn {self.name}, the temp is {self.temp} \u00B0F. The MinTemp is {self.temp_min}\u00B0F, and the MaxTemp is {self.temp_max}\u00B0F.\n\n")
+        print(f"\nIn {self.name}, the temp is {self.temp} \u00B0{self.temp_degree}. The MinTemp is {self.temp_min}\u00B0{self.temp_degree}, and the MaxTemp is {self.temp_max}\u00B0{self.temp_degree}.")
 
 
 
 #call/create a city object
 # I didn't supply a unit value b/c is has a default at this time, it can be supplied as needed in the call.
 # put the object I call into the variable "myCity"
-myCity = City("Portland", 5.5234,-122.6762)
+myCity = City("Portland", 5.5234,-122.6762, "metric")
 myCity.temp_print()
 
-nextCity = City("Dallas", 32.7831, -96.8067)
+nextCity = City("Dallas", 32.7831, -96.8067, "metric")
 nextCity.temp_print()
 #print(nextCity.responce_json)
