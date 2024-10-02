@@ -16,3 +16,11 @@ except:
 
 responce_json = responce.json()
 # this will put the result in a variable and put it json format, so that it's easy to read.
+
+# To get data from the dictonary
+temperature = responce_json["main"]["temp"]
+print(temperature)
+temp_min = responce_json["main"]["temp_min"]
+print(temp_min)
+temp_max = responce_json["main"]["temp_max"]
+print(temp_max)
