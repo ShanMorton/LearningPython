@@ -35,7 +35,7 @@ class City():
     #query the city from the data in put to the method call.
     def getData(self):
         try:
-            responce = requests.get(f"https://api.openweathermap.org/data/2.5/weather?units={self.units}&lat={self.lat}&lon={self.long}&appid=d29ed9d06fffc17f2715092156ee12eb")
+            responce = requests.get(f"https://api.openweathermap.org/data/2.5/weather?units={self.units}&lat={self.lat}&lon={self.long}&appid=d29ed9d06fffc17f2715092156ee12e")
             # if this cmd runs it'll print good data below
         except:
             print("This is not working for you at this time!\n")
